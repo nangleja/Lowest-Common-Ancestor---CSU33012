@@ -25,12 +25,12 @@ class test_node(unittest.TestCase):
         root.right.left = node.Node(6)
         root.right.right = node.Node(7)
         root.left.left.left = node.Node(8)
-        self.assertEqual(2, node.lowestCommonAncestor(root, 8, 5))
+        self.assertEqual(2, node.LCA(root, 8, 5))
 
 # Test No.2 - Null Tree
     def test_nullTree(self):
         root = None
-        self.assertEqual(-1, node.lowestCommonAncestor(root, 4, 5), 'Empty tree returns -1')
+        self.assertEqual(-1, node.LCA(root, 4, 5), 'Empty tree returns -1')
 
 #Test No.3 - Invalid Node
     def test_InvalidNode(self):
@@ -42,7 +42,7 @@ class test_node(unittest.TestCase):
         root.right.left = node.Node(6)
         root.right.right = node.Node(7)
         root.left.left.left = node.Node(8)
-        self.assertEqual(-1, node.lowestCommonAncestor(root, 4, 9), "Unfound node returns -1")
+        self.assertEqual(-1, node.LCA(root, 4, 9), "Unfound node returns -1")
 
 #Test No.4 Common Ancestor is the Node
 
@@ -55,9 +55,9 @@ class test_node(unittest.TestCase):
         root.right.left = node.Node(6)
         root.right.right = node.Node(7)
         root.left.left.left = node.Node(8)
-        self.assertEqual(2, node.lowestCommonAncestor(root, 2, 4), "Common Ancestor of 2 & 4 is 2 itself")
-        self.assertEqual(2, node.lowestCommonAncestor(root, 2, 2), "Common Ancestor of 2 & 2 is 2 itself")
-        self.assertEqual(2, node.lowestCommonAncestor(root, 4, 2), "Common Ancestor of 4 & 2 is 2 itself")
+        self.assertEqual(2, node.LCA(root, 2, 4), "Common Ancestor of 2 & 4 is 2 itself")
+        self.assertEqual(2, node.LCA(root, 2, 2), "Common Ancestor of 2 & 2 is 2 itself")
+        self.assertEqual(2, node.LCA(root, 4, 2), "Common Ancestor of 4 & 2 is 2 itself")
 
 
 
