@@ -1,5 +1,6 @@
 import unittest
 import node
+import sys
 
 
 class test_node(unittest.TestCase):
@@ -24,8 +25,7 @@ class test_node(unittest.TestCase):
         root.left.right = node.Node(5)
         root.right.left = node.Node(6)
         root.right.right = node.Node(7)
-        root.left.left.left = node.Node(8)
-        self.assertEqual(2, node.LCA(root, 8, 5))
+        self.assertEqual(2, node.LCA(root, 4, 5))
 
 # Test No.2 - Null Tree
     def test_nullTree(self):
