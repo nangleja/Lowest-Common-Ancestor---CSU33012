@@ -1,9 +1,10 @@
-#Lowest Common Ancestor - Nangleja 
+#Lowest Common Ancestor DAG - Nangleja
 class Node:
     def __init__(self, val):
         self.val =  val
         self.left = None
         self.right = None
+        self.travelled = False;
 
 def lowestCommonAncestor(root, x, y):
 
@@ -40,3 +41,7 @@ def findPath( root, path, k):
 
     path.pop()
     return False
+
+def LCA(root, x, y):
+
+return
