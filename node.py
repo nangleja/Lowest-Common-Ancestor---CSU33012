@@ -6,24 +6,6 @@ class Node:
         self.right = None
         self.travelled = False;
 
-def lowestCommonAncestor(root, x, y):
-
-
-    path1 = []
-    path2 = []
-
-    if (not findPath(root, path1, x) or not findPath(root, path2, y)):
-        return -1
-
-
-    i = 0
-    while(i < len(path1) and i < len(path2)):
-        if path1[i] != path2[i]:
-            break
-        i += 1
-    return path1[i-1]
-
-
 def findPath( root, path, k):
 
     if root is None:
