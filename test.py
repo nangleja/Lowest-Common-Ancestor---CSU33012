@@ -110,6 +110,7 @@ class test_node(unittest.TestCase):
 
         self.assertEqual(13, node.LCA(root, 12, 14))
         self.assertEqual(6, node.LCA(root, 10, 12))
+        self.assertEqual(3, node.LCA(root, 14, 7))
 
 if __name__ == '__main__':
     unittest.main()
