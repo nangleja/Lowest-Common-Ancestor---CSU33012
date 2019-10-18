@@ -1,18 +1,22 @@
 #Part 2 - DAG LCA test cases
 #Nangleja - 17338145
 
+#Tests differ from Part 1 as the new 'addChild' schema has been implemented
+
 import unittest
 import node
 import sys
 
 class test_node(unittest.TestCase):
 
+# Test No.1 - Null tree
 
     def test_NullTree(self):
         root = None
         self.assertEqual(-1, node.LCA(root, 4, 5), 'Empty tree returns -1')
         self.assertEqual(-1, node.LCA(None, 0, 0), 'Empty tree returns -1')
 
+# Test No.2 - Tree of one element
 
     def test_TreeOfOneElement(self):
         # create one element tree
@@ -22,6 +26,8 @@ class test_node(unittest.TestCase):
         self.assertEqual(node.LCA(root, 1, 2), -1, "Should return -1")
         self.assertEqual(node.LCA(root, 1, 1), 1, "Should return 1")
         self.assertEqual(node.LCA(root, 6, 7), -1, "Should return -1")
+
+# Test No.3 - Basic test case using a BST
 
     def test_basicTree1(self):
         root = node.Node(1)
@@ -41,11 +47,10 @@ class test_node(unittest.TestCase):
         self.assertEqual(2, node.LCA(root, 4, 5))
         self.assertEqual(1, node.LCA(root, 4, 6))
 
+# Test No.4 - Basic test case using a different BST
 
     def test_basicTree2(self):
-
         #See basicgraph2.jpg in github repository for visualisation!
-
         root = node.Node(1)
         n2 = node.Node(2)
         n3 = node.Node(3)
@@ -76,6 +81,8 @@ class test_node(unittest.TestCase):
         self.assertEqual(5, node.LCA(root, 12, 8))
         self.assertEqual(10, node.LCA(root, 9, 12))
         self.assertEqual(1, node.LCA(root, 6, 13))
+
+# Test No.5 - Test of DAG. Multiple parents present
 
     def test_simpleDag(self):
         root = node.Node(1)
@@ -114,6 +121,59 @@ class test_node(unittest.TestCase):
         self.assertEqual(13, node.LCA(root, 12, 14))
         self.assertEqual(6, node.LCA(root, 10, 12))
         self.assertEqual(3, node.LCA(root, 14, 7))
+
+# Test No.6 - Dag test using chars
+
+    def test_dagCharTest(self):
+        root = node.Node('a')
+        n2 = node.Node('b')
+        n3 = node.Node('c')
+        n4 = node.Node('d')
+        n5 = node.Node('e')
+        root.addChild(n2)
+        root.addChild(n4)
+        n2.addChild(n3)
+        n2.addChild(n5)
+        n3.addChild(n4)
+        n3.addChild(n5)
+
+        self.assertEqual('c', node.LCA(root, 'd', 'e'))
+        self.assertEqual(-1, node.LCA(root, 'e', 'q'))
+
+# Test No.7 - Ancestor is Node
+
+    def test_ancestorIsNode(self):
+        root = node.Node('a')
+        n2 = node.Node('b')
+        n3 = node.Node('c')
+        n4 = node.Node('d')
+        n5 = node.Node('e')
+        root.addChild(n2)
+        root.addChild(n4)
+        n2.addChild(n3)
+        n2.addChild(n5)
+        n3.addChild(n4)
+        n3.addChild(n5)
+
+        self.assertEqual('c', node.LCA(root, 'c', 'e'))
+        self.assertEqual('b', node.LCA(root, 'b', 'c'))
+
+# Test No.8 - Correct Root Not given in test
+
+    def test_notGivenRoot(self):
+        root = node.Node(1)
+        n2 = node.Node(2)
+        n3 = node.Node(3)
+        n4 = node.Node(4)
+        n5 = node.Node(5)
+        root.addChild(n2)
+        n2.addChild(n3)
+        n3.addChild(n4)
+        n3.addChild(n5)
+        n2.addChild(n5)
+        root.addChild(n4)
+        self.assertEqual(-1, node.LCA(n5, 2, 4))
+
 
 if __name__ == '__main__':
     unittest.main()

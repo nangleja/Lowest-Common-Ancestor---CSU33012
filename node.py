@@ -3,7 +3,7 @@
 
 #Although branched from the initial program, it became clear that the 'left' & 'righ' convention
 #of labeling would not be suited well for Directed Acyclic graph structures and so the progam
-#has been changed considerably. The code is inspired by multiple online code repositories
+#has been changed considerably. The code has been Adopted and modified from various online sources.
 
 class Node:
     def __init__(self, val):
@@ -25,15 +25,12 @@ class Node:
             print("Parent = ", x.val, ", Depth = ", x.maxDepth, "\n")
 
 
-
 def LCA(root, x, y):
     if root == None:
         return -1
 
     if root.parents != []:
         return -1
-
-
 
     xN = findNode(root, x)
     yN = findNode(root, y)
@@ -64,9 +61,6 @@ def LCA(root, x, y):
         if yN.maxDepth > deepestAncestorDepth:
             deepestAncestor = yN
             deepestAncestorDepth = yN.maxDepth
-
-    #Need method to iterate through ancestry
-
 
     return deepestAncestor.val
 
