@@ -1,3 +1,5 @@
+#Software Engineering Part A - Simple LCA program
+#Nangleja - 17338145
 class Node:
     def __init__(self, val):
         self.val =  val
