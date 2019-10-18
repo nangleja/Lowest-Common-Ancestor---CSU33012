@@ -82,7 +82,7 @@ class test_node(unittest.TestCase):
         self.assertEqual(10, node.LCA(root, 9, 12))
         self.assertEqual(1, node.LCA(root, 6, 13))
 
-# Test No.5 - Test of DAG. Multiple parents present
+# Test No.5 - Test of DAG. with Multiple parents present
 
     def test_simpleDag(self):
         root = node.Node(1)
@@ -140,7 +140,7 @@ class test_node(unittest.TestCase):
         self.assertEqual('c', node.LCA(root, 'd', 'e'))
         self.assertEqual(-1, node.LCA(root, 'e', 'q'))
 
-# Test No.7 - Ancestor is Node
+# Test No.7 - Ancestor is the Node itself
 
     def test_ancestorIsNode(self):
         root = node.Node('a')
@@ -171,7 +171,7 @@ class test_node(unittest.TestCase):
         n3.addChild(n4)
         n3.addChild(n5)
         n2.addChild(n5)
-        self.assertEqual(-1, node.LCA(n5, 2, 4))
+        self.assertEqual(-1, node.LCA(n5, 2, 4), 'n5 is not the root, return -1')
 
 # Test No.9 - Extreme input values
 
