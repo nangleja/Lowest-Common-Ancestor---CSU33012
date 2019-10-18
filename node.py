@@ -1,4 +1,10 @@
-#Lowest Common Parent DAG - Nangleja
+#Part 2 - Lowest Common Ancestor DAG program
+#Nangleja - 17338145
+
+#Although branched from the initial program, it became clear that the 'left' & 'righ' convention
+#of labeling would not be suited well for Directed Acyclic graph structures and so the progam
+#has been changed considerably. The code is inspired by multiple online code repositories
+
 class Node:
     def __init__(self, val):
         self.val =  val
