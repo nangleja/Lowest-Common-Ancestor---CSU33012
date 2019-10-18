@@ -4,24 +4,30 @@ class Node:
         self.val =  val
         self.children = []
         self.parents = []
-        self.depthMax = 0;
+        self.maxDepth = 0
 
-def addChild(self, n):
-    self.children.append(n)
-    n.parents.extend(self.parents)
-    n.parents.append(self)
-    if n.depthMax < self.depthMax + 1:
-        n.depthMax = self.depthMax + 1:
+    def addChild(self, n):
+        self.children.append(n)
+        n.parents.extend(self.parents)
+        n.parents.append(self)
+        if n.maxDepth < self.maxDepth + 1:
+            n.maxDepth = self.maxDepth + 1
 
-def printchild(self):
-    print("Parents of ", self.val)
-    for x in self.parents:
-        print("Parent = ", x.val, ", Depth = ", x.depthMax, "\n")
+    def printparents(self):
+        print("Aarents of ", self.val)
+        for x in self.parents:
+            print("Parent = ", x.val, ", Depth = ", x.maxDepth, "\n")
+
 
 
 def LCA(root, x, y):
     if root == None:
         return -1
+
+    if root.parents != []:
+        return -1
+
+
 
     xN = findNode(root, x)
     yN = findNode(root, y)
@@ -35,29 +41,32 @@ def LCA(root, x, y):
     if xN == None or yN == None:
         return -1
 
-    deepestParentDepth = -1
-    deepestParent = None
+    deepestAncestorDepth = -1
+    deepestAncestor = None
     for i in xN.parents:
-        if i in yN.s:
-            if i.depthMax > deepestParentDepth:
-                deepestParent = i
-                deepestParentDepth = i.depthMax
+        if i in yN.parents:
+            if i.maxDepth > deepestAncestorDepth:
+                deepestAncestor = i
+                deepestAncestorDepth = i.maxDepth
 
     if xN in yN.parents:
-        if xN.depthMax > deepestParentDepth:
-            deepestParent = xN
-            deepestParentDepth = xN.depthMax
+        if xN.maxDepth > deepestAncestorDepth:
+            deepestAncestor = xN
+            deepestAncestorDepth = xN.maxDepth
 
     if yN in xN.parents:
-        if yN.depthMax > deepestParentDepth:
-            deepestParent = yN
-            deepestParentDepth = yN.depthMax
+        if yN.maxDepth > deepestAncestorDepth:
+            deepestAncestor = yN
+            deepestAncestorDepth = yN.maxDepth
 
-    return deeptestParent.Invalid
+    #Need method to iterate through ancestry
+
+
+    return deepestAncestor.val
 
 def findNode(node, val):
     if node.val == val:
-     return node
+        return node
     elif len(node.children) != 0:
         for x in node.children:
             n = findNode(x,val)
