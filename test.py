@@ -29,11 +29,13 @@ class test_node(unittest.TestCase):
         self.assertEqual(3, node.lowestCommonAncestor(root, 6, 7))
 
 # Test No.2 - Null Tree
+
     def test_nullTree(self):
         root = None
         self.assertEqual(-1, node.lowestCommonAncestor(root, 4, 5), 'Empty tree returns -1')
 
 #Test No.3 - Invalid Node
+
     def test_InvalidNode(self):
         root = node.Node(1)
         root.left = node.Node(2)
@@ -76,6 +78,42 @@ class test_node(unittest.TestCase):
     def test_rootIsNodeOnly(self):
         root = node.Node(1)
         self.assertEqual(1, node.lowestCommonAncestor(root, 1, 1))
+
+#Test No.7 Both nodes invalid
+
+    def test_bothNodesInvalid(self):
+        root = node.Node(1)
+        root.left = node.Node(2)
+        root.right = node.Node(3)
+        root.left.left = node.Node(4)
+        root.left.right = node.Node(5)
+        root.right.left = node.Node(6)
+        root.right.right = node.Node(7)
+        self.assertEqual(-1, node.lowestCommonAncestor(root, 8, 9))
+
+#Test No.8 Duplicated Nodes
+    def test_duplicatedNodes(self):
+        root = node.Node(1)
+        root.left = node.Node(2)
+        root.right = node.Node(3)
+        root.left.left = node.Node(4)
+        root.left.right = node.Node(6)
+        root.right.left = node.Node(6)
+        root.right.right = node.Node(7)
+        self.assertEqual(1, node.lowestCommonAncestor(root, 6, 7))
+            #1 is the common route of both 6's
+
+#Test No.9 Tesst using chars
+    def test_charTest(self):
+        root = node.Node('a')
+        root.left = node.Node('b')
+        root.right = node.Node('c')
+        root.left.left = node.Node('d')
+        root.left.right = node.Node('e')
+        root.right.left = node.Node('f')
+        root.right.right = node.Node('g')
+        self.assertEqual('a', node.lowestCommonAncestor(root, 'e', 'g'))
+            #1 is the common route of both 6's
 
 
 
