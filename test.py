@@ -171,8 +171,33 @@ class test_node(unittest.TestCase):
         n3.addChild(n4)
         n3.addChild(n5)
         n2.addChild(n5)
-        root.addChild(n4)
         self.assertEqual(-1, node.LCA(n5, 2, 4))
+
+# Test No.9 - Extreme input values
+
+    def test_extremeInputValues(self):
+        root = node.Node(-9223372036854775800)
+        n2 = node.Node(1.6)
+        n3 = node.Node(1.7)
+        n4 = node.Node(1.9)
+        n5 = node.Node(300000)
+        n6 = node.Node(400000)
+        n7 = node.Node(9223372036854775800)
+        root.addChild(n2)
+        root.addChild(n3)
+        n2.addChild(n4)
+        n2.addChild(n5)
+        n3.addChild(n6)
+        n3.addChild(n7)
+
+        self.assertEqual(-9223372036854775800, node.LCA(root, 1.6, 1.7))
+        self.assertEqual(1.7, node.LCA(root, 400000, 9223372036854775800))
+
+# Test No.10 - Root is the only node
+
+    def test_rootOnlyNode(self):
+        root = node.Node(5)
+        self.assertEqual(5, node.LCA(root, 5, 5))
 
 
 if __name__ == '__main__':
